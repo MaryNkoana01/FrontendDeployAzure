@@ -29,6 +29,12 @@ jobs:
 
       - name: Build the app
         run: npm run build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-app
+          path: .
         
       - uses: azure/login@v1
         with:
@@ -59,6 +65,12 @@ jobs:
             --app-location "public" \
             --output-location "build"  \
             --login-with-github
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: built-app
+          # path: downloaded-app
 
       - name: Check Deployment Status
         run: |
