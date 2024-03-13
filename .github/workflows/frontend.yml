@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  GITHUB_USER_NAME: ${{ secrets.USER_NAME }}
+  # GITHUB_USER_NAME: ${{ secrets.USER_NAME }}
   AZURE_LOCATION: "westus2"
 
 jobs:
@@ -29,6 +29,7 @@ jobs:
 
       - name: Build the app
         run: npm run build
+        
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -52,7 +53,7 @@ jobs:
           az staticwebapp create \
             --name ${{ steps.repo_name.outputs.name }} \
             --resource-group ${{ steps.create_resource_group.outputs.resource_group_name }} \
-            --source "https://github.com/${{ env.GITHUB_USER_NAME }}/${{ steps.repo_name.outputs.name }}" \
+            --source "https://github.com/${{ github.repository_owner }}/${{ steps.repo_name.outputs.name }}" \
             --location ${{ env.AZURE_LOCATION }} \
             --branch main \
             --app-location "public" \
