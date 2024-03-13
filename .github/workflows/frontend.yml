@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: built-app
-          path: .
+          path: "public"
         
       - uses: azure/login@v1
         with:
