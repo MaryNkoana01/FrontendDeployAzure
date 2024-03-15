@@ -63,7 +63,7 @@ jobs:
             --location ${{ env.AZURE_LOCATION }} \
             --branch main \
             --app-location "public" \
-            --output-location "build"  \
+            --output-location ""  \
             --login-with-github
 
       - name: Download artifacts
