@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 env:
   # GITHUB_USER_NAME: ${{ secrets.USER_NAME }}
   AZURE_LOCATION: "westus2"
@@ -16,26 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.1.1
 
-
       - name: Set up Node.js
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 20
-
-
+          
       - name: Install dependencies
         run: npm install
-
 
       - name: Build the app
         run: npm run build
 
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: built-app
-      #     path: "public"
-        
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -65,12 +55,6 @@ jobs:
             --app-location "public" \
             --output-location ""  \
             --login-with-github
-
-      # - name: Download artifacts
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: built-app
-      #     # path: downloaded-app
 
       - name: Check Deployment Status
         run: |
