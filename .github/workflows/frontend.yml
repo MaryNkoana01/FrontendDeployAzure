@@ -52,7 +52,7 @@ jobs:
             --source "https://github.com/${{ github.repository_owner }}/${{ steps.repo_name.outputs.name }}" \
             --location ${{ env.AZURE_LOCATION }} \
             --branch main \
-            --app-location "public" \
+            --app-location "dist" \
             --output-location ""  \
             --login-with-github
 
