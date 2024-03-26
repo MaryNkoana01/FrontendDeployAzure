@@ -52,7 +52,7 @@ jobs:
             --source "https://github.com/${{ github.repository_owner }}/${{ steps.repo_name.outputs.name }}" \
             --location ${{ env.AZURE_LOCATION }} \
             --branch main \
-            --app-location "dist" \
+            --app-location "dist/fa-modern-banner" \
             --output-location ""  \
             --login-with-github
 
